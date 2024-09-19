@@ -60,13 +60,19 @@ int main(void)
         if (HAL_GPIO_ReadPin(GAS_DETECTOR_PORT, GAS_DETECTOR_PIN) || HAL_GPIO_ReadPin(OVERTEMP_DETECTOR_PORT, OVERTEMP_DETECTOR_PIN)) {
             alarmState = 1;
             HAL_GPIO_WritePin(ALARM_LED_PORT, ALARM_LED_PIN, GPIO_PIN_SET);  // Encender el LED
+            printf("Gas Detector: %10d", HAL_GPIO_ReadPin(GAS_DETECTOR_PORT, GAS_DETECTOR_PIN));
+            printf("Overtemp Detector: %10d", HAL_GPIO_ReadPin(OVERTEMP_DETECTOR_PORT, OVERTEMP_DETECTOR_PIN));
+            printf("Alarm State: %10d", HAL_GPIO_ReadPin(ALARM_OFF_BUTTON_PORT, ALARM_OFF_BUTTON_PIN));
         }
 
         // Se leen los valores del gas detector y del overtemp detector
         if (HAL_GPIO_ReadPin(ALARM_OFF_BUTTON_PORT, ALARM_OFF_BUTTON_PIN)) {
             alarmState = 0;
             HAL_GPIO_WritePin(ALARM_LED_PORT, ALARM_LED_PIN, GPIO_PIN_RESET);  // Apagar el LED
-        }
+            printf("Gas Detector: %10d", HAL_GPIO_ReadPin(GAS_DETECTOR_PORT, GAS_DETECTOR_PIN));
+            printf("Overtemp Detector: %10d", HAL_GPIO_ReadPin(OVERTEMP_DETECTOR_PORT, OVERTEMP_DETECTOR_PIN));
+            printf("Alarm State: %10d", HAL_GPIO_ReadPin(ALARM_OFF_BUTTON_PORT, ALARM_OFF_BUTTON_PIN));
         
+        }
     }
 }
